@@ -1,7 +1,8 @@
 
 # Archivo de clase compilado
 *.class
-
+.vscode/
+filesJava.txt
 # Archivo de registro
 *.log
 
