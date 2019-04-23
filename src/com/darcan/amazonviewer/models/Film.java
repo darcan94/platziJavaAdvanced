@@ -71,4 +71,6 @@ public class Film {
         this.viewed = viewed;
     }
 
+    public void toSee();
+
 }
