@@ -10,15 +10,22 @@ public class Main {
         do {
             System.out.println(".::WELCOME TO AMAZONVIEWER::.");
             System.out.println("------------------------------");
-            System.out.println("----.::Choice an option::.----");
+            System.out.println("----.::choose an option::.----");
             System.out.println("------------------------------");
-            System.out.println("\t1-VIEW MOVIES");
-            System.out.println("\t2-VIEW SERIES");
-            System.out.println("\t3-READ BOOKS");
-            System.out.println("\t4-Report");
-            System.out.println("\t5-Report today");
-            System.out.println("\t6-EXIT");
+            System.out.println("\t1. VIEW MOVIES");
+            System.out.println("\t2. VIEW SERIES");
+            System.out.println("\t3. READ BOOKS");
+            System.out.println("\t3. VIEW MAGAZINES");
+            System.out.println("\t5. REPORT");
+            System.out.println("\t6. REPORT TODAY");
+            System.out.println("\t0. EXIT");
 
         } while (exit != 0);
     }
+    public static showMovies(){}
+    public static showSeries(){}
+    public static showBooks(){}
+    public static showMagazines(){}
+    public static MakeReport(){}
+    public static MakeReport(){}
 }
