@@ -1,6 +1,6 @@
 package com.darcan.amazonviewer.models;
 
-public class Film {
+public abstract class Film {
     private String title;
     private String genre;
     private String creator;
@@ -71,6 +71,6 @@ public class Film {
         this.viewed = viewed;
     }
 
-    public void toSee();
+    public abstract void toSee();
 
 }

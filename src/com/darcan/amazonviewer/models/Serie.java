@@ -1,6 +1,8 @@
 package com.darcan.amazonviewer.models;
+
 import java.util.ArrayList;
 import java.util.Date;
+
 public class Serie extends Film {
     private int id;
     private int sessionQuantity;
@@ -14,6 +16,7 @@ public class Serie extends Film {
     public int getId() {
         return this.id;
     }
+
     public int getSessionQuantity() {
         return this.sessionQuantity;
     }
@@ -32,24 +35,22 @@ public class Serie extends Film {
 
     @Override
     public String toString() {
-        return "\n.::SERIE::."+
-               "\nTitulo: " + getTitle()+
-               "\nGenero: " + getGenre() +
-               "\nAño: " + getYear()+
-               "\nCreador: "+ getCreator()+
-               "\nDuracion: "+getDuration();
+        return "\n.::SERIE::." + "\nTitulo: " + getTitle() + "\nGenero: " + getGenre() + "\nAño: " + getYear()
+                + "\nCreador: " + getCreator() + "\nDuracion: " + getDuration();
     }
-    public static ArrayList<Serie> makeSeriesList(){
-        ArrayList<Serie> series = new ArrayList();
-        for (int i = 1; i <= 5;i++){
-            Serie serie = new Serie("Serie "+i, "Genero"+i, "Creador"+i, 1200, 5);
-            serie.setChapters();
+
+    public static ArrayList<Serie> makeSeriesList() {
+        ArrayList<Serie> series = new ArrayList<>();
+        for (int i = 1; i <= 5; i++) {
+            Serie serie = new Serie("Serie " + i, "Genero" + i, "Creador" + i, 1200, 5);
+            serie.setChapters(Chapter.makeChapterList(serie));
             series.add(serie);
         }
         return series;
     }
+
     @Override
-    public void toSee(){
+    public void toSee() {
         setViewed(true);
     }
 }
