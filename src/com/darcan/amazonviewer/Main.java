@@ -1,5 +1,7 @@
 package com.darcan.amazonviewer;
 
+import java.util.Date;
+
 public class Main {
     public static void main(String[] args) {
         showMenu();
@@ -22,10 +24,22 @@ public class Main {
 
         } while (exit != 0);
     }
-    public static showMovies(){}
-    public static showSeries(){}
-    public static showBooks(){}
-    public static showMagazines(){}
-    public static MakeReport(){}
-    public static MakeReport(){}
+
+    public static void showMovies() {
+    }
+
+    public static void showSeries() {
+    }
+
+    public static void showBooks() {
+    }
+
+    public static void showMagazines() {
+    }
+
+    public static void MakeReport() {
+    }
+
+    public static void MakeReport(Date date) {
+    }
 }
