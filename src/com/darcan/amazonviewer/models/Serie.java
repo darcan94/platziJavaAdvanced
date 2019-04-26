@@ -35,7 +35,7 @@ public class Serie extends Film {
 
     @Override
     public String toString() {
-        return "\n.::SERIE::." + "\nTitulo: " + getTitle() + "\nGenero: " + getGenre() + "\nAño: " + getYear()
+        return "\n.::SERIE::." + "\nTitulo: " + getTitle() + "\nGenero: " + getGenre() + "\nyear: " + getYear()
                 + "\nCreador: " + getCreator() + "\nDuracion: " + getDuration();
     }
 

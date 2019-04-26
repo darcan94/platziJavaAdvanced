@@ -26,7 +26,7 @@ public class Movie extends Film implements IVisualizable {
 
 	@Override
 	public String toString() {
-		return "\n.::MOVIE::." + "\n Titulo: " + getTitle() + "\n Genero: " + getGenre() + "\n Año: " + getYear()
+		return "\n.::MOVIE::." + "\n Titulo: " + getTitle() + "\n Genero: " + getGenre() + "\n year: " + getYear()
 				+ "\n Creador: " + getCreator() + "\n Duracion: " + getDuration();
 	}
 

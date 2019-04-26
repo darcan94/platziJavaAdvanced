@@ -78,7 +78,7 @@ public class Book extends Publication implements IVisualizable {
         // Termine de verla
         stopToSee(dateI, new Date());
         System.out.println();
-        System.out.println("Leíste: " + toString());
+        System.out.println("Leiste: " + toString());
         System.out.println("Por: " + getTimeReaded() + " milisegundos");
 
     }

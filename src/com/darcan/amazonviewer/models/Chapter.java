@@ -36,7 +36,7 @@ public class Chapter extends Movie {
 
     @Override
     public String toString() {
-        return "\n.::CHAPTER::." + "\nTitulo: " + getTitle() + "\nAño: " + getYear() + "\nCreador: " + getCreator()
+        return "\n.::CHAPTER::." + "\nTitulo: " + getTitle() + "\nyear: " + getYear() + "\nCreador: " + getCreator()
                 + "\nDuration: " + getDuration() + "\n.::SERIE::." + "\nSerie: " + getSerie().getTitle();
     }
 
@@ -54,7 +54,7 @@ public class Chapter extends Movie {
         ArrayList<Chapter> chapters = getSerie().getChapters();
         int chapterViewedConter = 0;
         for (Chapter chapter : chapters) {
-            if (chapter.getIsViewed())
+            if (chapter.isViewed() == "SI")
                 chapterViewedConter++;
         }
         if (chapterViewedConter == chapters.size())
