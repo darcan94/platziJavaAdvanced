@@ -2,7 +2,6 @@ package com.darcan.amazonviewer;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Scanner;
 
 import com.darcan.amazonviewer.models.Book;
 import com.darcan.amazonviewer.models.Chapter;
@@ -31,7 +30,7 @@ public class Main {
             System.out.println("\t0. EXIT");
 
             var sc = new Scanner(System.in);
-            int op = sc.nextInt();
+            int op = ChoiceHelper.validateUserResponse(0, 6);
             sc.close();
             switch (op) {
             case 1:
@@ -78,8 +77,7 @@ public class Main {
             movies.stream().forEach((x) -> System.out.println(". " + x.getTitle() + " visto" + x.isViewed()));
             System.out.println("0. Regresar al menu");
             System.out.println();
-            var sc = new Scanner(System.in);
-            var response = sc.nextInt();
+            var response = ChoiceHelper.validateUserResponse(0, movies.size());
             sc.close();
 
             if (response == 0) {
@@ -100,8 +98,8 @@ public class Main {
             System.out.println("..:: SERIES ::..");
             System.out.println();
             series.stream().forEach(x -> System.out.println(". " + x.getTitle() + " visto: " + x.isViewed()));
-            var sc = new Scanner(System.in);
-            var response = sc.nextInt();
+
+            var response = ChoiceHelper.validateUserResponse(0, series.size());
             sc.close();
             if (response == 0) {
                 exit = 0;
@@ -119,8 +117,8 @@ public class Main {
             System.out.println("..:: CHAPTERS ::..");
             System.out.println();
             chaptersSelected.stream().forEach(x -> System.out.println(". " + x.getTitle() + " visto: " + x.isViewed()));
-            var sc = new Scanner(System.in);
-            var response = sc.nextInt();
+
+            var response = ChoiceHelper.validateUserResponse(0, chaptersSelected.size());
             sc.close();
             if (response == 0) {
                 exit = 0;
@@ -140,8 +138,8 @@ public class Main {
             System.out.println("..:: BOOKS ::..");
             System.out.println();
             books.stream().forEach(x -> System.out.println(". " + x.getTitle() + " visto: " + x.isReaded()));
-            var sc = new Scanner(System.in);
-            var response = sc.nextInt();
+
+            var response = ChoiceHelper.validateUserResponse(0, books.size());
             sc.close();
             if (response == 0) {
                 exit = 0;
@@ -161,8 +159,8 @@ public class Main {
             System.out.println("..:: MAGAZINES ::..");
             System.out.println();
             magazines.stream().forEach(x -> System.out.println(". " + x.getTitle()));
-            var sc = new Scanner(System.in);
-            var response = sc.nextInt();
+
+            var response = ChoiceHelper.validateUserResponse(0, magazines.size());
             sc.close();
             if (response == 0) {
                 exit = 0;
@@ -172,8 +170,10 @@ public class Main {
     }
 
     public static void MakeReport() {
+        showMenu();
     }
 
     public static void MakeReport(Date date) {
+        showMenu();
     }
 }

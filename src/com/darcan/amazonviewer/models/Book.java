@@ -11,6 +11,7 @@ public class Book extends Publication implements IVisualizable {
 
     public Book(String title, Date editionDate, String editorial, String[] authors) {
         super(title, editionDate, editorial);
+        setAuthors(authors);
     }
 
     public int getId() {
@@ -71,7 +72,7 @@ public class Book extends Publication implements IVisualizable {
         setReaded(true);
         Date dateI = startToSee(new Date());
 
-        for (int i = 0; i < 100000; i++) {
+        for (int i = 0; i < 1000; i++) {
             System.out.println("..........");
         }
 

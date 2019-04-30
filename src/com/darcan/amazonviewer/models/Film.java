@@ -65,6 +65,7 @@ public abstract class Film {
         }
 
         return visto;
+        //return visto = viewed ? "Si": "No";
     }
 
     public void setViewed(boolean viewed) {
