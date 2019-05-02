@@ -1,7 +1,6 @@
 package com.darcan.amazonviewer.models;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Serie extends Film {
     private int id;

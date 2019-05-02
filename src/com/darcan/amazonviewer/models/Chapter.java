@@ -54,7 +54,7 @@ public class Chapter extends Movie {
         ArrayList<Chapter> chapters = getSerie().getChapters();
         int chapterViewedConter = 0;
         for (Chapter chapter : chapters) {
-            if (chapter.isViewed() == "SI")
+            if (chapter.isViewed() == "Si")
                 chapterViewedConter++;
         }
         if (chapterViewedConter == chapters.size())

@@ -3,6 +3,7 @@
 *.class
 .vscode/
 filesJava.txt
+*.txt
 # Archivo de registro
 *.log
 

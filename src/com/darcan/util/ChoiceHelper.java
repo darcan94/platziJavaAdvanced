@@ -1,3 +1,4 @@
+package com.darcan.util;
 import java.util.Scanner;
 public class ChoiceHelper{
 	public static int validateUserResponse(int min, int max){
@@ -18,6 +19,7 @@ public class ChoiceHelper{
 		}
 		response = sc.nextInt();
 		}
+		//sc.close();
 		return response;
 	
 }
