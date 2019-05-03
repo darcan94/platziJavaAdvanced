@@ -2,7 +2,11 @@ package com.darcan.amazonviewer.models;
 
 import java.util.Date;
 import java.util.ArrayList;
-
+/**
+ * <h1>Movie</h1>
+ * Hereda de la clase {@link Film} 
+ * Implementa metodos de la interface {@link IVisualizable}  
+ */
 public class Movie extends Film implements IVisualizable {
 	private int id;
 	private int timeViewed;
@@ -29,18 +33,24 @@ public class Movie extends Film implements IVisualizable {
 		return "\n.::MOVIE::." + "\n Titulo: " + getTitle() + "\n Genero: " + getGenre() + "\n year: " + getYear()
 				+ "\n Creador: " + getCreator() + "\n Duracion: " + getDuration();
 	}
-
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Date startToSee(Date dateI) {
 		return dateI;
 	}
-
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void stopToSee(Date dateI, Date dateF) {
 		if (dateF.getTime() > dateI.getTime())
 			setTimeViewed((int) (dateF.getTime() - dateI.getTime()));
 	}
-
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void toSee() {
 		setViewed(true);

@@ -9,7 +9,7 @@ filesJava.txt
 
 # Archivos BlueJ
 *.ctxt
-
+doc/
 # Herramientas móviles para Java (J2ME)
 .mtj.tmp /
 

@@ -1,5 +1,15 @@
 package com.darcan.amazonviewer.models;
-
+/**
+ * <h1>Film</h1>
+ * Es una superclase abstracta
+ * <p>
+ * Es la clase base de la familia films, movies y series. Contiene el metodo {@code view()}
+ * que es obligatorio implementar a toda clase que herede de Films
+ * 
+ * @author Darcan
+ * @version 1.0
+ * @since 2019
+ */
 public abstract class Film {
     private String title;
     private String genre;
@@ -71,7 +81,10 @@ public abstract class Film {
     public void setViewed(boolean viewed) {
         this.viewed = viewed;
     }
-
+    /**
+     * {@code view()} metodo abstracto, las clases hijas estan obligadas a implementarlo
+     * a menos que estas sean abstractas tambien
+     */
     public abstract void toSee();
 
 }

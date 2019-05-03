@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+
 import com.anncode.makereport.Report;
 import com.darcan.amazonviewer.models.Book;
 import com.darcan.amazonviewer.models.Chapter;
@@ -12,8 +13,20 @@ import com.darcan.amazonviewer.models.Movie;
 import com.darcan.amazonviewer.models.Serie;
 import com.darcan.util.ChoiceHelper;
 
+/**
+ * <h1>AmazonViewer</h1>
+ * Es un programa que permite visualizar peliculas, series,  libros y magazines. Permite generar reportes
+ * <p>
+ * 
+ * @author Darcan
+ * @version 1.0
+ * @since 2018  
+ * 
+ */
+
 public class Main {
     public static void main(String[] args) {
+        
         showMenu();
     }
 

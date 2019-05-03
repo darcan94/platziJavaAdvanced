@@ -1,7 +1,11 @@
 package com.darcan.amazonviewer.models;
 
 import java.util.ArrayList;
-
+/**
+ * <h1>Chapter</h1>
+ * Hereda de la clase {@link Movie}
+ * @see Film
+ */
 public class Chapter extends Movie {
     private int id;
     private int sessionNumber;
