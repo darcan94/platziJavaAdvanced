@@ -1,17 +1,26 @@
 package com.darcan.amazonviewer.models;
 
 import java.util.Date;
-import java.util.ArrayList;
 
-public class Book extends Publication implements IVisualizable {
+import com.darcan.util.ChoiceHelper;
+
+import java.util.ArrayList;
+/**
+<h1>Movie</h1>
+ * Hereda de la clase {@link Publication} 
+ * Implementa metodos de la interface {@link IVisualizable} 
+*/
+ public class Book extends Publication implements IVisualizable {
     private int id;
     private String isbn;
     private boolean readed;
     private int timeReaded;
+    ArrayList<Page> pages;
 
-    public Book(String title, Date editionDate, String editorial, String[] authors) {
+    public Book(String title, Date editionDate, String editorial, String[] authors, ArrayList<Page> pages) {
         super(title, editionDate, editorial);
         setAuthors(authors);
+        this.pages = pages;
     }
 
     public int getId() {
@@ -41,6 +50,16 @@ public class Book extends Publication implements IVisualizable {
     public void setTimeReaded(int timeReaded) {
         this.timeReaded = timeReaded;
     }
+
+
+    public ArrayList<Page> getPages() {
+        return this.pages;
+    }
+
+    public void setPages(ArrayList<Page> pages) {
+        this.pages = pages;
+    }
+
 
     @Override
     public String toString() {
@@ -72,9 +91,27 @@ public class Book extends Publication implements IVisualizable {
         setReaded(true);
         Date dateI = startToSee(new Date());
 
-        for (int i = 0; i < 1000; i++) {
-            System.out.println("..........");
-        }
+        int i = 0;
+        do {
+            System.out.println("................");
+            System.out.println("Page " + getPages().get(i).getNumber());
+            System.out.println(getPages().get(i).getContent());
+            System.out.println("................");
+            if (i != 0) 
+                System.out.println("1. Reghresar pagina");
+                System.out.println("2. Siguiente pagina");
+                System.out.println("0. Cerrar libro");
+                System.out.println();
+
+            var response = ChoiceHelper.validateUserResponse(0, 2);
+            if (response == 2) {
+                i++;
+            }else if(response == 1){
+                i--;
+            }else if(response == 0){
+                break;
+            }
+        } while (i < getPages().size());
 
         // Termine de verla
         stopToSee(dateI, new Date());
@@ -90,11 +127,52 @@ public class Book extends Publication implements IVisualizable {
         for (int i = 0; i < 3; i++) {
             authors[i] = "author " + i;
         }
+        int pagina = 0;
+        ArrayList<Page> pages = new ArrayList<>();
+
+        for (int i = 0; i < 3; i++) {
+            pagina = i + 1;
+            pages.add(new Book.Page(pagina, "El contenido de la pagina " + pagina));
+        }    
+
         for (int i = 1; i <= 5; i++) {
-            books.add(new Book("Book " + i, new Date(), "editorial " + i, authors));
+            books.add(new Book("Book " + i, new Date(), "editorial " + i, authors, pages));
         }
 
         return books;
+    }
+    /**
+     * <H1 Aqui en la clase anidadade {@link Book} llamada {@link Page}
+     * empieza el curso de avanzado de java en platzi
+     */
+    public static class Page{
+        private int id;
+        private int number;
+        private String content;
+
+        public Page(int number, String content){
+            this.number = number;
+            this.content = content;
+        }
+
+        public int getId(){
+            return id;
+        }
+        public void setId(int id){
+            this.id = id;
+        }
+        public int getNumber(){
+            return number;
+        }
+        public void setNumber(int number){
+            this.number = number;
+        }
+        public String getContent(){
+            return content;
+        }
+        public void setContent(String content){
+            this.content = content;
+        }
     }
 
 }
