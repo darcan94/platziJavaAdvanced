@@ -1,23 +1,27 @@
 package com.darcan.amazonviewer.models;
 
 import java.util.Date;
+
+import com.darcan.amazonviewer.dao.MovieDao;
+
 import java.util.ArrayList;
 /**
  * <h1>Movie</h1>
  * Hereda de la clase {@link Film} 
  * Implementa metodos de la interface {@link IVisualizable}  
  */
-public class Movie extends Film implements IVisualizable {
+public class Movie extends Film implements IVisualizable , MovieDao{
 	private int id;
 	private int timeViewed;
 
+	public Movie(){}
 	public Movie(String title, String genre, String creator, int duration, short year) {
 		super(title, genre, creator, duration);
 		setYear(year);
 	}
 
-	public int getId() {
-		return this.id;
+	public void setId(int id) {
+		this.id=id;
 	}
 
 	public int getTimeViewed() {
@@ -65,11 +69,9 @@ public class Movie extends Film implements IVisualizable {
 	}
 
 	public static ArrayList<Movie> makeMoviesList() {
-		ArrayList<Movie> movies = new ArrayList<>();
-		for (int i = 1; i <= 5; i++) {
-			movies.add(new Movie("Movie" + i, "Genero" + i, "Creador" + i, 120 + i, (short) (2016 + i)));
-		}
-		return movies;
+		Movie movie = new Movie();
+		
+		return movie.read();
 	}
 
 }
