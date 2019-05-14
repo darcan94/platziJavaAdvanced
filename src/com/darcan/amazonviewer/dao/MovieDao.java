@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.darcan.amazonviewer.Main;
 import com.darcan.amazonviewer.db.IDBconnection;
 import com.darcan.amazonviewer.models.Movie;
 import static com.darcan.amazonviewer.db.DataBase.*;
@@ -17,7 +18,7 @@ public interface MovieDao extends IDBconnection{
         default ArrayList<Movie> read(){
         ArrayList<Movie> movies = new ArrayList<>();  
         try(Connection connection = dbConnect()) {
-            String sql = "SELCT * FROM " + TMOVIE;
+            String sql = "SELECT * FROM " + TMOVIE;
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             ResultSet rs= preparedStatement.executeQuery();
            
@@ -33,9 +34,10 @@ public interface MovieDao extends IDBconnection{
                 movies.add(movie);
             }
         } catch (SQLException e) {
-            
+            e.printStackTrace();
+           // Main.showMenu();
         }
-        return movies;
+            return movies;
        }
 
 

@@ -3,7 +3,7 @@ package com.darcan.amazonviewer;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
+import java.util.concurrent.atomic.AtomicInteger;
 
 import com.anncode.makereport.Report;
 import com.darcan.amazonviewer.models.Book;
@@ -79,16 +79,19 @@ public class Main {
 
     }
 
-    static ArrayList<Movie> movies = Movie.makeMoviesList();
+    static ArrayList<Movie> movies = new ArrayList<>();
 
     public static void showMovies() {
-
+        movies = Movie.makeMoviesList();
         int exit = 1;
         do {
             System.out.println();
             System.out.println("..:: MOVIES ::..");
             System.out.println();
-            movies.stream().forEach((x) -> System.out.println(". " + x.getTitle() + " visto " + x.isViewed()));
+
+            AtomicInteger atomicInteger = new AtomicInteger(1);
+            movies.forEach(m -> System.out.println(atomicInteger.getAndIncrement()+". " + m.getTitle() + " - visto :" + m.isViewed()));
+           
             System.out.println("0. Regresar al menu");
             System.out.println();
             var response = ChoiceHelper.validateUserResponse(0, movies.size());

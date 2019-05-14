@@ -70,7 +70,6 @@ public class Movie extends Film implements IVisualizable , MovieDao{
 
 	public static ArrayList<Movie> makeMoviesList() {
 		Movie movie = new Movie();
-		
 		return movie.read();
 	}
 

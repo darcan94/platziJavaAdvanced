@@ -14,7 +14,7 @@ doc/
 .mtj.tmp /
 
 # Archivos de paquete #
-*.jar
+#*.jar
 *.war
 *.nar
 *.ear
