@@ -1,0 +1,6 @@
+#!/bin/bash
+echo compilando...
+cd /home/darcan/Documentos/platzi/platziJavaAdvanced
+export JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8
+javac -cp libs/makefile.jar:libs/mysql-connector-java-5.1.47.jar:src -d build src/com/darcan/amazonviewer/Main.java
+

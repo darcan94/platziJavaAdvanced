@@ -6,49 +6,72 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.darcan.amazonviewer.Main;
 import com.darcan.amazonviewer.db.IDBconnection;
 import com.darcan.amazonviewer.models.Movie;
 import static com.darcan.amazonviewer.db.DataBase.*;
-public interface MovieDao extends IDBconnection{
-       default Movie setMovieViewed(Movie movie){
+public interface MovieDao extends IDBconnection
+{
+       default Movie setMovieViewed(Movie movie)
+       {
+            try(Connection connection = dbConnect()) 
+            {
+                
+                String sql = "INSERT INTO " +  TVIEWED +
+                            "("+TVIEWED_IDMATERIAL+", "+TVIEWED_IDELEMENT+", " +TVIEWED_IDUSER+ ") VALUES ("+
+                            ID_TMATERIALS[0]+", "+movie.getId()+", "+TUSER_IDUSUARIO+")";
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                if(preparedStatement.executeUpdate() > 0)
+                        System.out.println("Visto");
+
+            } 
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
             return movie;
        } 
 
-        default ArrayList<Movie> read(){
+       default ArrayList<Movie> read()
+       {
         ArrayList<Movie> movies = new ArrayList<>();  
-        try(Connection connection = dbConnect()) {
+        try(Connection connection = dbConnect())
+         {
             String sql = "SELECT * FROM " + TMOVIE;
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             ResultSet rs= preparedStatement.executeQuery();
            
-            while (rs.next()) {
+            while (rs.next()) 
+            {
                 Movie movie = new Movie(
                     rs.getString(TMOVIE_TITLE), 
                     rs.getString(TMOVIE_GENRE), 
                     rs.getString(TMOVIE_CREATOR),
                     Integer.valueOf(rs.getString(TMOVIE_DURATION)),
                     Short.valueOf(rs.getString(TMOVIE_YEAR)));
+
                 movie.setId(Integer.valueOf(rs.getString(TMOVIE_ID)));
                 movie.setViewed(getMovieViewed(preparedStatement, connection, Integer.valueOf(rs.getString(TMOVIE_ID))));
                 movies.add(movie);
             }
-        } catch (SQLException e) {
+        } 
+        catch (SQLException e)
+        {
             e.printStackTrace();
            // Main.showMenu();
         }
             return movies;
        }
 
-
-       private boolean getMovieViewed(PreparedStatement preparedStatement, Connection connection, int id_movie){
+       private boolean getMovieViewed(PreparedStatement preparedStatement, Connection connection, int id_movie)
+       {
            boolean viewed = false;
            String query = "SELECT * FROM "+TVIEWED+
                           " WHERE "+TVIEWED_IDMATERIAL+"= ?"+
                           " AND "+TVIEWED_IDELEMENT+"= ?" +
                           " AND "+TVIEWED_IDUSER+"= ?";
             ResultSet rs = null;
-            try {
+            try 
+            {
                 preparedStatement = connection.prepareStatement(query);
                 preparedStatement.setInt(1, ID_TMATERIALS[0]);
 			    preparedStatement.setInt(2, id_movie);
@@ -57,8 +80,9 @@ public interface MovieDao extends IDBconnection{
 			    rs = preparedStatement.executeQuery();
 			    viewed = rs.next();
             }
-            catch (Exception err) {
-        
+            catch (Exception e)
+            {
+                e.printStackTrace();
             }
            return viewed;
        }

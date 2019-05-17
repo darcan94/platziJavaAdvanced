@@ -1,0 +1,3 @@
+#!/bin/bash
+cd /home/darcan/Documentos/platzi/platziJavaAdvanced
+java -cp libs/makefile.jar:libs/mysql-connector-java-5.1.47.jar:build   com.darcan.amazonviewer.Main

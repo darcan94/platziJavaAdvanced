@@ -13,6 +13,27 @@ public class DataBase{
     public static final String TMOVIE_DURATION  = "duration";
     public static final String TMOVIE_YEAR      = "year";
 
+    public static final String TSERIE           = "serie";
+    public static final String TSERIE_ID        = "id";
+    public static final String TSERIE_TITLE     = "title";
+    public static final String TSERIE_GENRE     = "genre";
+    public static final String TSERIE_CREATOR   = "creator";
+    public static final String TSERIE_DURATION  = "duration";
+    public static final String TSERIE_YEAR      = "year";
+    public static final String TSERIE_SESSIONS  = "sessionQuantity";
+
+    public static final String TCHAPTER           = "chapter";
+    public static final String TCHAPTER_ID        = "id";
+    public static final String TCHAPTER_TITLE     = "title";
+    public static final String TCHAPTER_GENRE     = "genre";
+    public static final String TCHAPTER_CREATOR   = "creator";
+    public static final String TCHAPTER_DURATION  = "duration";
+    public static final String TCHAPTER_YEAR      = "year";
+    public static final String TCHAPTER_CHAPTERS  = "sessionNumber";
+    public static final String TCHAPTER_SERIE     = "idSerie";
+
+    
+
     public static final String TMATERIAL 	    = "material";
 	public static final int[] ID_TMATERIALS 	= {1,2,3,4,5};
 	

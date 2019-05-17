@@ -2,18 +2,28 @@ package com.darcan.amazonviewer.models;
 
 import java.util.ArrayList;
 
-public class Serie extends Film {
+import com.darcan.amazonviewer.dao.SerieDao;
+
+public class Serie extends Film implements SerieDao{
     private int id;
     private int sessionQuantity;
     private ArrayList<Chapter> chapters;
+
+    public Serie(){}
 
     public Serie(String title, String genre, String creator, int duration, int sessionQuantity) {
         super(title, genre, creator, duration);
         this.sessionQuantity = sessionQuantity;
     }
 
+
     public int getId() {
         return this.id;
+    }
+
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getSessionQuantity() {
@@ -38,13 +48,12 @@ public class Serie extends Film {
                 + "\nCreador: " + getCreator() + "\nDuracion: " + getDuration();
     }
 
-    public static ArrayList<Serie> makeSeriesList() {
-        ArrayList<Serie> series = new ArrayList<>();
-        for (int i = 1; i <= 5; i++) {
-            Serie serie = new Serie("Serie " + i, "Genero" + i, "Creador" + i, 1200, 5);
-            serie.setChapters(Chapter.makeChapterList(serie));
-            series.add(serie);
-        }
+    public static ArrayList<Serie> makeSeriesList() 
+    {
+            ArrayList<Serie> series = new Serie().read();
+            
+            series.forEach(s -> s.setChapters(Chapter.makeChapterList(s)));
+        
         return series;
     }
 

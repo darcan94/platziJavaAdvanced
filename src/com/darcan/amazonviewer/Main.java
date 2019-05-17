@@ -61,10 +61,10 @@ public class Main {
                 showMagazines();
                 break;
             case 5:
-                MakeReport();
+                makeReport();
                 break;
             case 6:
-                MakeReport(new Date());
+                makeReport(new Date());
                 break;
             case 0:
                 System.exit(0);
@@ -106,16 +106,19 @@ public class Main {
         } while (exit != 0);
     }
 
-    static ArrayList<Serie> series = Serie.makeSeriesList();
+    static ArrayList<Serie> series = new ArrayList<>();
 
     public static void showSeries() {
+        series = Serie.makeSeriesList();
         int exit = 1;
         do {
             System.out.println();
             System.out.println("..:: SERIES ::..");
             System.out.println();
-            series.stream().forEach(x -> System.out.println(". " + x.getTitle() + " visto: " + x.isViewed()));
-
+            AtomicInteger atomicInteger = new AtomicInteger(1);
+            series.forEach(x -> System.out.println(atomicInteger.getAndIncrement()+". " + x.getTitle() + " - visto: " + x.isViewed()));
+            System.out.println("0. Regresar al menu");
+            System.out.println();
             var response = ChoiceHelper.validateUserResponse(0, series.size());
             
             if (response == 0) {
@@ -133,8 +136,10 @@ public class Main {
             System.out.println();
             System.out.println("..:: CHAPTERS ::..");
             System.out.println();
-            chaptersSelected.stream().forEach(x -> System.out.println(". " + x.getTitle() + " visto: " + x.isViewed()));
-
+            AtomicInteger atomicInteger = new AtomicInteger(1);
+            chaptersSelected.stream().forEach(x -> System.out.println(atomicInteger.getAndIncrement() + ". " + x.getTitle() + " - visto: " + x.isViewed()));
+            System.out.println("0. Regresar al menu");
+            System.out.println();
             var response = ChoiceHelper.validateUserResponse(0, chaptersSelected.size());
            
             if (response == 0) {
@@ -186,7 +191,7 @@ public class Main {
         } while (exit != 0);
     }
 
-    public static void MakeReport() {
+    public static void makeReport() {
         
 		Report report = new Report();
 		report.setNameFile("reporte");
@@ -229,7 +234,7 @@ public class Main {
 		System.out.println();
     }
 
-    public static void MakeReport(Date date) {
+    public static void makeReport(Date date) {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd-h-m-s-S");
 		String dateString = df.format(date);
 		Report report = new Report();
