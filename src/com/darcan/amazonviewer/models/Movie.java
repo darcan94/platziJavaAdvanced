@@ -58,9 +58,8 @@ public class Movie extends Film implements IVisualizable , MovieDao{
 	 */
 	@Override
 	public void toSee() {
-		setViewed(true);
-		//Movie movie = new Movie();
-		//movie.setMovieViewed(this);
+		if (isViewed()=="No")
+			setViewed(true);
 		new Movie().setMovieViewed(this);
 		Date dateI = startToSee(new Date());
 		for (int i = 0; i < 100; i++) {
@@ -72,9 +71,9 @@ public class Movie extends Film implements IVisualizable , MovieDao{
 		System.out.println("Por: " + getTimeViewed() + " milisegundos");
 	}
 
-	public static ArrayList<Movie> makeMoviesList() {
-		Movie movie = new Movie();
-		return movie.read();
+	public static ArrayList<Movie> makeMoviesList() 
+	{
+		return new Movie().read();
 	}
 
 }

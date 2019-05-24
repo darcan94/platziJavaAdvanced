@@ -50,11 +50,7 @@ public class Serie extends Film implements SerieDao{
 
     public static ArrayList<Serie> makeSeriesList() 
     {
-            ArrayList<Serie> series = new Serie().read();
-            
-            series.forEach(s -> s.setChapters(Chapter.makeChapterList(s)));
-        
-        return series;
+            return new Serie().read();    
     }
 
     @Override

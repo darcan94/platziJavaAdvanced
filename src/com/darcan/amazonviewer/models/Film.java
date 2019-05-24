@@ -68,15 +68,7 @@ public abstract class Film {
     }
 
     public String isViewed() {
-        String visto = "";
-        if (viewed == true) {
-            visto = "Si";
-        } else {
-            visto = "No";
-        }
-
-        return visto;
-        //return visto = viewed ? "Si": "No";
+        return viewed ? "Si": "No";
     }
 
     public void setViewed(boolean viewed) {

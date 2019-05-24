@@ -1,5 +1,6 @@
 package com.darcan.amazonviewer.dao;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,21 +9,15 @@ import java.util.ArrayList;
 
 import com.darcan.amazonviewer.db.IDBconnection;
 import com.darcan.amazonviewer.models.Movie;
-import static com.darcan.amazonviewer.db.DataBase.*;
 public interface MovieDao extends IDBconnection
 {
        default Movie setMovieViewed(Movie movie)
        {
             try(Connection connection = dbConnect()) 
             {
-                
-                String sql = "INSERT INTO " +  TVIEWED +
-                            "("+TVIEWED_IDMATERIAL+", "+TVIEWED_IDELEMENT+", " +TVIEWED_IDUSER+ ") VALUES ("+
-                            ID_TMATERIALS[0]+", "+movie.getId()+", "+TUSER_IDUSUARIO+")";
-                PreparedStatement preparedStatement = connection.prepareStatement(sql);
-                if(preparedStatement.executeUpdate() > 0)
-                        System.out.println("Visto");
-
+                String sql = "CALL insert_viewed("+ID_TMATERIALS[0]+", "+movie.getId()+", "+TUSER_IDUSUARIO+")";
+                CallableStatement callableStatement = connection.prepareCall(sql);
+                System.out.println(callableStatement.execute());
             } 
             catch (Exception e)
             {

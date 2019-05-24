@@ -2,7 +2,6 @@ package com.darcan.amazonviewer.models;
 
 import java.util.ArrayList;
 import java.util.Date;
-
 import com.darcan.amazonviewer.dao.ChapterDao;
 /**
  * <h1>Chapter</h1>
@@ -27,6 +26,10 @@ public class Chapter extends Movie implements ChapterDao
     public int getId()
     {
         return this.id;
+    }
+    public void setId(int id)
+    {
+        this.id=id;
     }
 
     public int getSessionNumber() 
@@ -63,24 +66,27 @@ public class Chapter extends Movie implements ChapterDao
 
     @Override
     public void toSee() 
-    {   
-        setViewed(true);
+    {   setViewed(true);
+        setChapterViewed(this);
         Date dateI = startToSee(new Date());
         for (int i = 0; i < 100; i++) {
             System.out.println(".........");
         }
        // super.toSee();
-        ArrayList<Chapter> chapters = getSerie().getChapters();
+       // System.out.println(getSerie().getTitle());
+        ArrayList<Chapter> chapters = serie.getChapters();
         int chapterViewedConter = 0;
         for (Chapter chapter : chapters) 
         {
             if (chapter.isViewed() == "Si")
                 chapterViewedConter++;
-                chapter.setChapterViewed(chapter);
+                
         }
         if (chapterViewedConter == chapters.size())
-            getSerie().setSerieViewed(serie);
-        
+        {
+            serie.setSerieViewed(this.serie);
+            serie.toSee();
+        }
             
             
             stopToSee(dateI, new Date());

@@ -82,7 +82,9 @@ public class Main {
     static ArrayList<Movie> movies = new ArrayList<>();
 
     public static void showMovies() {
-        movies = Movie.makeMoviesList();
+        if (movies.isEmpty()) 
+            movies = Movie.makeMoviesList();
+        
         int exit = 1;
         do {
             System.out.println();
@@ -109,18 +111,17 @@ public class Main {
     static ArrayList<Serie> series = new ArrayList<>();
 
     public static void showSeries() {
-        series = Serie.makeSeriesList();
-        int exit = 1;
+        if(series.isEmpty())
+            series = Serie.makeSeriesList();
+      
+            int exit = 1;
         do {
-            System.out.println();
-            System.out.println("..:: SERIES ::..");
-            System.out.println();
+            System.out.println("\n..:: SERIES ::..\n");
             AtomicInteger atomicInteger = new AtomicInteger(1);
             series.forEach(x -> System.out.println(atomicInteger.getAndIncrement()+". " + x.getTitle() + " - visto: " + x.isViewed()));
-            System.out.println("0. Regresar al menu");
-            System.out.println();
+            System.out.println("0. Regresar al menu\n");
+           
             var response = ChoiceHelper.validateUserResponse(0, series.size());
-            
             if (response == 0) {
                 exit = 0;
                 showMenu();
