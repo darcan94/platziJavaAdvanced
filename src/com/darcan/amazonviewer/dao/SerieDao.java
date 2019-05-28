@@ -17,7 +17,7 @@ public interface SerieDao extends IDBconnection
     {
         try(Connection connection = dbConnect())
         {
-                String sql = "CALL insert_viewed("+getProperty("material.one")+", "+serie.getId()+", "+getProperty("isUser")+")";
+                String sql = "CALL insert_viewed("+getProperty("material.one")+", "+serie.getId()+", "+getProperty("idUser")+")";
                 CallableStatement callableStatement = connection.prepareCall(sql);
                 System.out.println(callableStatement.execute());
         }

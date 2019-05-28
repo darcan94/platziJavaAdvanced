@@ -21,8 +21,7 @@ public interface ChapterDao extends IDBconnection
                 String sql = "CALL insert_viewed("+getProperty("material.two")+", "+
                                                    chapter.getId()+", "+
                                                    getProperty("idUser")+")";
-                CallableStatement callableStatement = connection.prepareCall(sql);
-                System.out.println(callableStatement.execute());          
+                System.out.println(connection.prepareCall(sql).execute());          
         }
         catch (Exception e) 
         {

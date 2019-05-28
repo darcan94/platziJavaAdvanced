@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import static com.darcan.util.PropertiesReader.getProperty;
 import com.darcan.amazonviewer.db.IDBconnection;
 import com.darcan.amazonviewer.models.Movie;
 public interface MovieDao extends IDBconnection
@@ -15,9 +16,10 @@ public interface MovieDao extends IDBconnection
        {
             try(Connection connection = dbConnect()) 
             {
-                String sql = "CALL insert_viewed("+ID_TMATERIALS[0]+", "+movie.getId()+", "+TUSER_IDUSUARIO+")";
-                CallableStatement callableStatement = connection.prepareCall(sql);
-                System.out.println(callableStatement.execute());
+                String sql = "CALL insert_viewed("+getProperty("material.cero")+", "+
+                                                 movie.getId()+", "+
+                                                 getProperty("idUser")+")";
+                System.out.println(connection.prepareCall(sql).execute());
             } 
             catch (Exception e)
             {
@@ -31,21 +33,21 @@ public interface MovieDao extends IDBconnection
         ArrayList<Movie> movies = new ArrayList<>();  
         try(Connection connection = dbConnect())
          {
-            String sql = "SELECT * FROM " + TMOVIE;
+            String sql = "SELECT * FROM " + getProperty("table.movie");
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             ResultSet rs= preparedStatement.executeQuery();
            
             while (rs.next()) 
             {
                 Movie movie = new Movie(
-                    rs.getString(TMOVIE_TITLE), 
-                    rs.getString(TMOVIE_GENRE), 
-                    rs.getString(TMOVIE_CREATOR),
-                    Integer.valueOf(rs.getString(TMOVIE_DURATION)),
-                    Short.valueOf(rs.getString(TMOVIE_YEAR)));
+                    rs.getString(getProperty("table.title")), 
+                    rs.getString(getProperty("table.genre")), 
+                    rs.getString(getProperty("table.creator")),
+                    Integer.valueOf(rs.getString(getProperty("table.duration"))),
+                    Short.valueOf(rs.getString(getProperty("table.year"))));
 
-                movie.setId(Integer.valueOf(rs.getString(TMOVIE_ID)));
-                movie.setViewed(getMovieViewed(preparedStatement, connection, Integer.valueOf(rs.getString(TMOVIE_ID))));
+                movie.setId(Integer.valueOf(rs.getString(getProperty("table.id"))));
+                movie.setViewed(getMovieViewed(preparedStatement, connection, movie.getId()));
                 movies.add(movie);
             }
         } 
@@ -60,17 +62,17 @@ public interface MovieDao extends IDBconnection
        private boolean getMovieViewed(PreparedStatement preparedStatement, Connection connection, int id_movie)
        {
            boolean viewed = false;
-           String query = "SELECT * FROM "+TVIEWED+
-                          " WHERE "+TVIEWED_IDMATERIAL+"= ?"+
-                          " AND "+TVIEWED_IDELEMENT+"= ?" +
-                          " AND "+TVIEWED_IDUSER+"= ?";
+           String query = "SELECT * FROM "+getProperty("table.viewed")+
+                          " WHERE "+getProperty("table.viewed.idMateria")+"= ?"+
+                          " AND "+getProperty("table.viewed.idElement")+"= ?" +
+                          " AND "+getProperty("table.viewed.idUser")+"= ?";
             ResultSet rs = null;
             try 
             {
                 preparedStatement = connection.prepareStatement(query);
-                preparedStatement.setInt(1, ID_TMATERIALS[0]);
+                preparedStatement.setInt(1, Integer.valueOf(getProperty("material.cero")));
 			    preparedStatement.setInt(2, id_movie);
-			    preparedStatement.setInt(3, TUSER_IDUSUARIO);
+			    preparedStatement.setInt(3, Integer.valueOf(getProperty("idUser")));
 			
 			    rs = preparedStatement.executeQuery();
 			    viewed = rs.next();
@@ -79,6 +81,6 @@ public interface MovieDao extends IDBconnection
             {
                 e.printStackTrace();
             }
-           return viewed;
+            return viewed;
        }
 }

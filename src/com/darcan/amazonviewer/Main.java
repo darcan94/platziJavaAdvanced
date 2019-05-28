@@ -157,10 +157,9 @@ public class Main {
     public static void showBooks() {
         int exit = 1;
         do {
-            System.out.println();
-            System.out.println("..:: BOOKS ::..");
-            System.out.println();
-            books.stream().forEach(x -> System.out.println(". " + x.getTitle() + " visto: " + x.isReaded()));
+            System.out.println("\n..:: BOOKS ::..\n");
+            AtomicInteger atomicInteger = new AtomicInteger(1);
+            books.stream().forEach(x -> System.out.println(atomicInteger.getAndIncrement()+". " + x.getTitle() + " visto: " + x.isReaded()));
 
             var response = ChoiceHelper.validateUserResponse(0, books.size());
             
